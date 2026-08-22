@@ -1,0 +1,1008 @@
+:root{
+  --bg:#03060b;
+  --panel:#0a111b;
+  --panel2:#101a29;
+  --line:#20324d;
+  --text:#f7f9fd;
+  --muted:#9fb0c8;
+  --neon:#00b8ff;
+  --sky:#57cfff;
+  --green:#22cb70;
+  --yellow:#fff0a3;
+  --yellow2:#ffd34d;
+  --danger:#ff5f6d;
+  --orange:#ff9d43;
+  --purple:#aa8cff;
+  --radius:24px;
+  --shadow:0 26px 70px rgba(0,0,0,.46);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+body{
+  background:
+    radial-gradient(circle at 12% 0%,rgba(0,184,255,.14),transparent 28%),
+    radial-gradient(circle at 92% 12%,rgba(170,140,255,.10),transparent 25%),
+    var(--bg);
+}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.45}
+.hidden{display:none!important}
+
+.app-header{
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:14px clamp(18px,4vw,60px);
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(3,6,11,.90);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(0,184,255,.22);
+}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{
+  width:48px;height:48px;border-radius:15px;display:grid;place-items:center;
+  background:linear-gradient(145deg,#102037,#07101c);border:1px solid rgba(0,184,255,.42);
+  box-shadow:0 0 26px rgba(0,184,255,.14);font-size:26px
+}
+.brand h1{margin:0;font-size:clamp(20px,2.4vw,30px)}
+.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.header-btn,.ghost-btn,.secondary-btn{
+  color:var(--text);background:#0e1826;border:1px solid #294463;border-radius:14px;padding:11px 16px;font-weight:800
+}
+.header-btn:hover,.ghost-btn:hover,.secondary-btn:hover{border-color:var(--neon);box-shadow:0 0 18px rgba(0,184,255,.16)}
+
+.screen{padding:clamp(24px,4vw,58px);min-height:calc(100vh - 76px)}
+.hero{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:34px;align-items:stretch}
+.hero-copy,.level-showcase{background:linear-gradient(180deg,rgba(16,26,41,.94),rgba(8,14,23,.96));border:1px solid rgba(0,184,255,.22);border-radius:32px;box-shadow:var(--shadow)}
+.hero-copy{padding:clamp(28px,4vw,56px)}
+.eyebrow{display:inline-block;color:var(--sky);font-weight:900;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.hero h2{font-size:clamp(34px,5vw,64px);line-height:1.02;margin:18px 0 18px;max-width:900px}
+.hero-copy>p{font-size:clamp(17px,1.8vw,21px);line-height:1.55;color:#c2cde0;max-width:820px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 32px}
+.primary-btn,.secondary-btn{min-height:48px;padding:13px 20px;border-radius:14px;font-weight:900;border:1px solid transparent}
+.primary-btn{background:linear-gradient(180deg,#22c9ff,#0498df);color:#00111c;box-shadow:0 0 28px rgba(0,184,255,.22)}
+.primary-btn:hover{filter:brightness(1.08)}
+.instruction-preview{display:grid;gap:12px}
+.instruction-preview article{display:flex;gap:14px;align-items:flex-start;padding:16px;border-radius:18px;background:#09131f;border:1px solid #1e314b}
+.instruction-preview article>span{font-size:24px}
+.instruction-preview strong{display:block;margin-bottom:4px}
+.instruction-preview p{margin:0;color:var(--muted);line-height:1.45}
+.level-showcase{padding:20px;display:grid;gap:14px;align-content:start}
+.level-card{width:100%;text-align:left;padding:22px;border-radius:22px;background:#09131f;border:1px solid #21344f;color:var(--text);transition:.2s transform,.2s border-color,.2s box-shadow}
+.level-card:hover:not(:disabled){transform:translateY(-2px);border-color:var(--neon);box-shadow:0 0 24px rgba(0,184,255,.14)}
+.level-card.available{border-color:rgba(34,203,112,.5)}
+.level-number{color:var(--muted);font-size:11px;font-weight:900;letter-spacing:.12em}
+.level-card h3{font-size:28px;margin:8px 0 6px}
+.level-card p{margin:0 0 14px;color:#bdc9dc}
+.status{display:inline-block;border-radius:999px;padding:7px 10px;background:#132137;color:#bcd0e9;font-size:12px;font-weight:900}
+.available .status{background:rgba(34,203,112,.14);color:#83f1b3}
+.password-link{background:transparent;color:var(--sky);border:0;padding:10px;font-weight:900}
+
+.game-shell{max-width:1450px;margin:0 auto}
+.stage-header{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;margin-bottom:18px}
+.stage-header h2{margin:4px 0 0;font-size:clamp(24px,3vw,38px)}
+.phase-dots{display:flex;gap:7px;margin-top:10px}
+.phase-dot{width:9px;height:9px;border-radius:50%;background:#26364e;border:0;padding:0}
+.phase-dot.active{background:var(--neon);box-shadow:0 0 12px rgba(0,184,255,.8)}
+.phase-dot.done{background:var(--green)}
+.stage-stats{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.stage-stats span{background:#0d1724;border:1px solid #243752;border-radius:14px;padding:11px 13px;color:#cbd7e9}
+.stage-stats b{color:white}
+
+.mission-premium{
+  display:grid;grid-template-columns:auto minmax(0,1fr) minmax(250px,.55fr);gap:20px;align-items:center;
+  color:#101010;background:linear-gradient(135deg,#fff5bc,#ffd85c);border:1px solid #ffea8f;border-radius:26px;
+  padding:20px 22px;box-shadow:0 18px 50px rgba(255,211,77,.12);margin-bottom:16px
+}
+.mission-icon{font-size:42px}
+.mission-premium span{display:block;font-size:11px;font-weight:900;letter-spacing:.12em;margin-bottom:5px}
+.mission-premium strong{display:block;font-size:20px;margin-bottom:5px}
+.mission-premium p{margin:0;line-height:1.45;font-weight:700}
+.tip-box{border-left:2px solid rgba(30,30,30,.18);padding-left:18px}
+.human-banner{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;background:linear-gradient(90deg,rgba(0,184,255,.12),rgba(34,203,112,.11));border:1px solid rgba(0,184,255,.35);border-radius:18px;padding:14px 18px;margin-bottom:16px;text-align:center}
+.human-banner strong{color:#9ae9ff}
+.human-banner span{color:#d8e4f5}
+
+.play-layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start}
+.board-panel,.premium-card{background:linear-gradient(180deg,#0d1724,#08111b);border:1px solid #213652;border-radius:24px;box-shadow:var(--shadow)}
+.board-panel{padding:18px}
+.board-toolbar{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:14px}
+.board-toolbar .mini,.mini{color:#87dbff;font-size:11px;font-weight:900;letter-spacing:.12em}
+.board-toolbar strong{display:block;margin-top:4px;font-size:22px}
+.board-toolbar p{margin:0;color:var(--muted);font-size:13px}
+.board{width:min(100%,780px);aspect-ratio:1;margin:auto;display:grid;gap:7px;padding:8px;border-radius:20px;background:#03070d;border:1px solid #20324d}
+.grid-5{grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(5,1fr)}
+.grid-6{grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(6,1fr)}
+.cell{position:relative;min-width:0;min-height:0;border-radius:14px;border:1px solid #1e314b;background:linear-gradient(145deg,#101b2b,#0a1320);overflow:hidden;display:grid;place-items:center}
+.cell::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.02),transparent 45%)}
+.cell.dest{border-color:rgba(34,203,112,.55);box-shadow:inset 0 0 18px rgba(34,203,112,.08)}
+.cell.obstacle{border-color:rgba(255,95,109,.55)}
+.cell-image{width:88%;height:88%;object-fit:contain;display:block;cursor:zoom-in;filter:drop-shadow(0 8px 12px rgba(0,0,0,.28));position:relative;z-index:2}
+.cell-image:hover{transform:scale(1.05)}
+.image-fallback{position:absolute;inset:7px;display:grid;place-items:center;border-radius:10px;background:#111d2d;color:#a9bad1;font-weight:900;font-size:13px;text-align:center;padding:6px}
+.robot-piece{position:absolute;z-index:7;display:grid;place-items:center;min-width:56%;min-height:56%;padding:4px;border-radius:18px;background:radial-gradient(circle,#f4fbff,#87d9ff 65%,#0099dc);border:2px solid white;box-shadow:0 0 20px rgba(0,184,255,.65),0 10px 20px rgba(0,0,0,.4);font-size:clamp(20px,3.2vw,42px);user-select:none}
+.robot-badge{position:absolute;right:3px;bottom:3px;font-size:8px;color:#00121e;background:white;border-radius:999px;padding:2px 5px;font-weight:900}
+.count-badge{position:absolute;left:5px;bottom:5px;z-index:5;background:#00121e;color:white;border:1px solid #44cfff;border-radius:999px;padding:3px 6px;font-size:10px;font-weight:900}
+
+.feedback{display:flex;gap:14px;align-items:flex-start;margin-top:14px;padding:16px;border-radius:18px;border:1px solid #29405f;background:#0b1623}
+.feedback>span{font-size:24px}.feedback strong{display:block;margin-bottom:4px}.feedback p{margin:0;color:#c0cce0;line-height:1.4}
+.feedback.success{border-color:rgba(34,203,112,.52);background:rgba(34,203,112,.08)}
+.feedback.error{border-color:rgba(255,95,109,.55);background:rgba(255,95,109,.08)}
+.feedback.warning{border-color:rgba(255,157,67,.55);background:rgba(255,157,67,.08)}
+
+.control-panel{display:grid;gap:14px;position:sticky;top:94px}
+.premium-card{padding:17px}
+.arrow-pad{width:220px;height:220px;margin:12px auto;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:8px}
+.arrow-btn,.action-btn{border:0;border-radius:18px;background:#10243d;display:grid;place-items:center;box-shadow:inset 0 0 0 1px #2b4f76,0 8px 18px rgba(0,0,0,.24)}
+.arrow-btn:hover{background:#15365b}.action-btn:hover{filter:brightness(1.07)}
+.arrow-btn.up{grid-column:2;grid-row:1}.arrow-btn.left{grid-column:1;grid-row:2}.action-btn{grid-column:2;grid-row:2;background:linear-gradient(180deg,#38dc85,#17aa5a);color:#052310;font-size:34px;font-weight:900;border-radius:50%}.arrow-btn.right{grid-column:3;grid-row:2}.arrow-btn.down{grid-column:2;grid-row:3}
+.arrow-btn span{width:0;height:0;border-style:solid}
+.arrow-btn.up span{border-width:0 17px 26px;border-color:transparent transparent #9fe8ff}
+.arrow-btn.down span{border-width:26px 17px 0;border-color:#9fe8ff transparent transparent}
+.arrow-btn.left span{border-width:17px 26px 17px 0;border-color:transparent #9fe8ff transparent transparent}
+.arrow-btn.right span{border-width:17px 0 17px 26px;border-color:transparent transparent transparent #9fe8ff}
+.execute-btn{width:100%;height:58px;border:0;border-radius:16px;background:linear-gradient(180deg,#75d9ff,#1baee9);color:#032133;font-size:28px;font-weight:900;box-shadow:0 0 24px rgba(0,184,255,.24)}
+.queue-head{display:flex;justify-content:space-between;align-items:center}.queue-head b{background:#132237;padding:6px 10px;border-radius:999px;color:#8fdfff}
+.command-queue{min-height:72px;max-height:180px;overflow:auto;display:flex;flex-wrap:wrap;gap:7px;margin:12px 0;padding:10px;border-radius:14px;background:#050b12;border:1px solid #1d2e47}
+.command-token{min-width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:#10233a;border:1px solid #315a83;color:#d8f5ff;font-weight:900}
+.command-token.action{background:rgba(34,203,112,.16);border-color:rgba(34,203,112,.45);color:#8ff3b8}
+.command-token.active{outline:2px solid var(--yellow2);box-shadow:0 0 14px rgba(255,211,77,.4)}
+.empty-queue{color:#6f829e;font-size:13px;margin:auto;text-align:center}
+.queue-tools{display:grid;grid-template-columns:1fr 1fr;gap:8px}.queue-tools button{border:1px solid #29425f;border-radius:12px;background:#0d1826;color:#d8e3f4;padding:10px;font-weight:800}.queue-tools button:last-child{grid-column:1/-1}
+.inventory-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.inventory-grid div{background:#08121d;border:1px solid #1b2e46;border-radius:14px;padding:12px}.inventory-grid span{display:block;color:var(--muted);font-size:11px}.inventory-grid strong{display:block;font-size:24px;margin-top:5px}
+
+.overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.86);display:grid;place-items:center;padding:20px;backdrop-filter:blur(12px)}
+.modal-card{width:min(820px,96vw);max-height:92vh;overflow:auto;background:linear-gradient(180deg,#101b2b,#070e17);border:1px solid rgba(0,184,255,.42);border-radius:28px;padding:clamp(24px,4vw,42px);box-shadow:0 0 0 1px rgba(0,184,255,.08),0 0 42px rgba(0,184,255,.12),var(--shadow);position:relative}
+.modal-card h2{font-size:clamp(28px,4vw,44px);margin:12px 0 16px}.modal-card p{color:#c3cee0;line-height:1.6}
+.modal-close{position:absolute;right:16px;top:16px;width:40px;height:40px;border-radius:50%;background:#0a1421;border:1px solid #29445f;color:white}
+.help-modal{width:min(1050px,96vw)}
+.help-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}.help-grid article{background:#09131f;border:1px solid #20334e;border-radius:18px;padding:17px}.help-grid article strong{color:#9de8ff}.help-grid article p{margin:8px 0 0}.wide-help{grid-column:1/-1}
+.human-principle{padding:18px;border-radius:18px;background:rgba(0,184,255,.08);border:1px solid rgba(0,184,255,.35);display:grid;gap:5px}.human-principle strong{font-size:18px}.human-principle span{color:#cbd8ea}.human-closing{font-weight:900;color:white!important;text-align:center}
+.password-modal{width:min(520px,96vw)}.password-modal input{width:100%;background:#050b12;color:white;border:1px solid #2a4565;border-radius:14px;padding:14px;margin:12px 0}.password-feedback{min-height:22px;color:#ffb1b8;font-weight:800;font-size:13px;margin-bottom:8px}
+.quiz-category{display:inline-block;margin-top:14px;padding:7px 10px;border-radius:999px;background:#132238;color:#9fdfff;font-size:12px;font-weight:900}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}.quiz-option{min-height:60px;border-radius:16px;background:#0c1826;color:white;border:1px solid #29435f;font-weight:900}.quiz-option:hover:not(:disabled){border-color:var(--neon)}.quiz-option.correct{background:rgba(34,203,112,.14);border-color:#2cd67b}.quiz-option.wrong{background:rgba(255,95,109,.12);border-color:#ff6672}.quiz-feedback{padding:16px;border-radius:16px;background:#08121d;border:1px solid #1d314b;color:#c9d5e6;white-space:pre-line;line-height:1.5}.quiz-feedback.success{border-color:rgba(34,203,112,.5)}.quiz-feedback.error{border-color:rgba(255,95,109,.5)}
+.modal-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px}
+.result-card{text-align:center}.result-icon,.final-icon{font-size:64px}.result-extra{margin:20px 0;text-align:left}.rank-legend{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.rank-legend>div{background:#08121d;border:1px solid #1d3049;border-radius:16px;padding:14px}.rank-legend strong{display:block;margin-bottom:6px}.rank-legend span{color:#aebed4;font-size:13px;line-height:1.4}
+.final-card{text-align:center}.final-card p{font-size:18px}
+
+.image-viewer{position:fixed;inset:0;z-index:400;background:#000;display:grid;place-items:center;padding:76px 28px 28px}
+.viewer-close{position:fixed;left:22px;top:20px;z-index:410;background:#08121d;color:white;border:1px solid var(--neon);border-radius:14px;padding:11px 16px;font-weight:900;box-shadow:0 0 20px rgba(0,184,255,.2)}
+.viewer-content{width:100%;height:100%;display:grid;grid-template-rows:auto 1fr;gap:12px;place-items:center}
+.viewer-heading{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center}
+.viewer-label{color:#99e6ff;font-size:clamp(17px,2.2vw,25px);font-weight:950;letter-spacing:.04em;text-transform:none;text-shadow:0 0 16px rgba(0,184,255,.62)}
+.viewer-file{color:#94a7bc;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.viewer-frame{width:min(88vw,960px);height:min(80vh,960px);display:grid;place-items:center;border:3px solid var(--neon);border-radius:24px;background:#02060b;box-shadow:0 0 22px rgba(0,184,255,.65),inset 0 0 24px rgba(0,184,255,.09);padding:14px}
+.viewer-frame img{width:100%;height:100%;object-fit:contain;display:block}
+
+@media (max-width:1050px){
+  .hero{grid-template-columns:1fr}.play-layout{grid-template-columns:1fr}.control-panel{position:static;grid-template-columns:1fr 1fr}.command-card{grid-row:span 2}.mission-premium{grid-template-columns:auto 1fr}.tip-box{grid-column:1/-1;border-left:0;border-top:1px solid rgba(20,20,20,.16);padding:12px 0 0}.board{width:min(100%,720px)}
+}
+@media (max-width:720px){
+  .app-header{position:relative;padding:12px 14px}.brand p{display:none}.header-btn{padding:10px}.screen{padding:16px}.hero-copy{padding:24px}.hero h2{font-size:38px}.stage-header{grid-template-columns:1fr auto}.stage-header>.ghost-btn{grid-column:1/-1;justify-self:start}.stage-stats{gap:6px}.stage-stats span{padding:8px 9px}.mission-premium{grid-template-columns:1fr}.mission-icon{display:none}.play-layout{gap:12px}.board-panel{padding:10px}.board{gap:4px;padding:5px}.cell{border-radius:9px}.robot-piece{font-size:25px;border-radius:12px}.control-panel{grid-template-columns:1fr}.command-card{grid-row:auto}.arrow-pad{width:210px;height:210px}.help-grid{grid-template-columns:1fr}.wide-help{grid-column:auto}.quiz-options{grid-template-columns:1fr}.rank-legend{grid-template-columns:1fr}.board-toolbar{align-items:flex-start;flex-direction:column}.viewer-frame{width:94vw;height:74vh}.image-viewer{padding:70px 12px 12px}
+}
+
+
+/* =========================================================
+   AJUSTES PREMIUM V5
+   INÍCIO em verde néon + alerta lateral de limite
+========================================================= */
+.home-neon-btn{
+  min-width:148px;
+  min-height:58px;
+  padding:15px 24px!important;
+  border:2px solid #5dff9a!important;
+  background:linear-gradient(180deg,#4dff94,#16d96e)!important;
+  color:#00170a!important;
+  font-size:18px;
+  font-weight:950;
+  letter-spacing:.04em;
+  box-shadow:
+    0 0 10px rgba(77,255,148,.95),
+    0 0 28px rgba(77,255,148,.55),
+    inset 0 0 16px rgba(255,255,255,.22)!important;
+}
+.home-neon-btn:hover{
+  filter:brightness(1.08);
+  transform:translateY(-1px);
+  box-shadow:
+    0 0 14px rgba(77,255,148,1),
+    0 0 38px rgba(77,255,148,.72),
+    inset 0 0 18px rgba(255,255,255,.28)!important;
+}
+
+.board-stage{
+  width:100%;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 230px;
+  gap:18px;
+  align-items:center;
+}
+.board-stage .board{
+  width:min(100%,780px);
+  margin:auto;
+}
+.boundary-alert{
+  width:100%;
+  align-self:center;
+  background:#f5ff00;
+  color:#050505;
+  border:3px solid #ffffa8;
+  border-radius:20px;
+  padding:22px 18px;
+  text-align:center;
+  font-weight:950;
+  box-shadow:
+    0 0 12px rgba(245,255,0,.95),
+    0 0 34px rgba(245,255,0,.72),
+    inset 0 0 18px rgba(255,255,255,.45);
+  animation:boundaryPulse .85s ease-in-out infinite alternate;
+}
+.boundary-alert .boundary-icon{
+  display:block;
+  font-size:34px;
+  margin-bottom:8px;
+}
+.boundary-alert strong{
+  display:block;
+  font-size:20px;
+  letter-spacing:.08em;
+  margin-bottom:8px;
+}
+.boundary-alert p{
+  margin:0;
+  color:#050505;
+  font-size:15px;
+  line-height:1.45;
+  font-weight:950;
+}
+@keyframes boundaryPulse{
+  from{transform:scale(1);box-shadow:0 0 10px rgba(245,255,0,.85),0 0 26px rgba(245,255,0,.58)}
+  to{transform:scale(1.018);box-shadow:0 0 16px rgba(245,255,0,1),0 0 42px rgba(245,255,0,.82)}
+}
+
+/* A moldura da ampliação permanece centralizada e ainda mais neon. */
+.image-viewer{
+  background:#000!important;
+}
+.viewer-frame{
+  border:4px solid #00b8ff!important;
+  box-shadow:
+    0 0 18px rgba(0,184,255,1),
+    0 0 44px rgba(0,184,255,.72),
+    inset 0 0 28px rgba(0,184,255,.13)!important;
+}
+.viewer-frame img{
+  object-position:center center;
+}
+
+/* Mais espaço para os quatro cards de instruções da abertura. */
+.instruction-preview{
+  grid-template-columns:1fr 1fr;
+}
+.instruction-preview article{
+  min-height:118px;
+}
+
+@media (max-width:1180px){
+  .board-stage{
+    grid-template-columns:minmax(0,1fr) 200px;
+    gap:12px;
+  }
+  .boundary-alert{
+    padding:18px 14px;
+  }
+}
+@media (max-width:820px){
+  .instruction-preview{grid-template-columns:1fr}
+  .board-stage{grid-template-columns:1fr}
+  .boundary-alert{
+    width:min(100%,620px);
+    justify-self:center;
+    margin-top:10px;
+  }
+}
+
+/* =========================================================
+   AJUSTE PREMIUM V7 — IMAGENS PRESAS ÀS CÉLULAS DO TABULEIRO
+   Evita que imagens ultrapassem as caixas em 5x5 e 6x6.
+========================================================= */
+.cell{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:6px;
+  overflow:hidden;
+  contain:paint;
+  isolation:isolate;
+}
+
+.cell-image{
+  width:86%;
+  height:86%;
+  max-width:86%;
+  max-height:86%;
+  object-fit:contain;
+  object-position:center center;
+  display:block;
+  margin:auto;
+  flex:0 0 auto;
+  position:relative;
+  z-index:2;
+  transform:none!important;
+  transition:filter .18s ease, opacity .18s ease;
+}
+
+/* O tabuleiro 6x6 possui células menores; cria uma margem interna maior. */
+.grid-6 .cell-image{
+  width:80%;
+  height:80%;
+  max-width:80%;
+  max-height:80%;
+}
+
+/* No 5x5 as imagens podem ocupar um pouco mais da célula. */
+.grid-5 .cell-image{
+  width:86%;
+  height:86%;
+  max-width:86%;
+  max-height:86%;
+}
+
+/* Destaque sem ampliar a imagem, evitando transbordamento visual. */
+.cell-image:hover{
+  transform:none!important;
+  filter:
+    drop-shadow(0 0 7px rgba(0,184,255,.95))
+    drop-shadow(0 0 14px rgba(0,184,255,.45));
+}
+
+/* Garante que a caixa de fallback também permaneça dentro da célula. */
+.image-fallback{
+  inset:8px;
+  max-width:calc(100% - 16px);
+  max-height:calc(100% - 16px);
+  overflow:hidden;
+}
+
+@media (max-width:720px){
+  .cell{padding:4px}
+  .grid-5 .cell-image{
+    width:82%;
+    height:82%;
+    max-width:82%;
+    max-height:82%;
+  }
+  .grid-6 .cell-image{
+    width:74%;
+    height:74%;
+    max-width:74%;
+    max-height:74%;
+  }
+}
+
+
+/* =========================================================
+   AJUSTE PREMIUM V8 — CAIXA VISUAL COM BORDA AZUL NÉON
+   Cada imagem do tabuleiro fica dentro de uma moldura própria.
+   A moldura controla tamanho, recorte e centralização, evitando
+   qualquer transbordamento em 5x5, 6x6 e telas menores.
+========================================================= */
+.cell{
+  box-sizing:border-box;
+  display:grid;
+  place-items:center;
+  padding:5px;
+  overflow:hidden!important;
+  contain:layout paint;
+  isolation:isolate;
+}
+
+.visual-box{
+  box-sizing:border-box;
+  position:relative;
+  z-index:2;
+  width:82%;
+  height:82%;
+  min-width:0;
+  min-height:0;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  border:2px solid #00b8ff;
+  border-radius:12px;
+  background:linear-gradient(145deg,rgba(2,9,16,.94),rgba(7,22,36,.90));
+  box-shadow:
+    0 0 8px rgba(0,184,255,.72),
+    0 0 18px rgba(0,184,255,.28),
+    inset 0 0 10px rgba(0,184,255,.12);
+  padding:4px;
+}
+
+.grid-5 .visual-box{
+  width:84%;
+  height:84%;
+}
+
+.grid-6 .visual-box{
+  width:76%;
+  height:76%;
+  border-radius:10px;
+  padding:3px;
+}
+
+.visual-box .cell-image{
+  box-sizing:border-box;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  display:block;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:7px;
+  overflow:hidden!important;
+  transform:none!important;
+  filter:drop-shadow(0 4px 7px rgba(0,0,0,.35));
+}
+
+.visual-box:hover{
+  border-color:#64dcff;
+  box-shadow:
+    0 0 10px rgba(0,184,255,.95),
+    0 0 24px rgba(0,184,255,.42),
+    inset 0 0 12px rgba(0,184,255,.16);
+}
+
+.visual-box .cell-image:hover{
+  transform:none!important;
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,.42));
+}
+
+.visual-box .image-fallback{
+  inset:4px;
+  border-radius:7px;
+}
+
+/* O robô continua sobre a imagem, mas permanece contido na célula. */
+.cell .robot-piece{
+  max-width:72%;
+  max-height:72%;
+}
+
+@media (max-width:820px){
+  .grid-5 .visual-box{
+    width:78%;
+    height:78%;
+  }
+  .grid-6 .visual-box{
+    width:70%;
+    height:70%;
+    padding:2px;
+    border-width:1.5px;
+  }
+}
+
+@media (max-width:520px){
+  .cell{padding:2px}
+  .grid-5 .visual-box{
+    width:74%;
+    height:74%;
+    padding:2px;
+  }
+  .grid-6 .visual-box{
+    width:66%;
+    height:66%;
+    border-radius:7px;
+    padding:1px;
+  }
+}
+
+/* =========================================================
+   AJUSTE PREMIUM V9 — VISUALIZAÇÃO AMPLIADA SEM TRANSBORDAR
+   Corrige o caso em que a base do JPG ultrapassava a borda
+   azul néon. O quadro agora usa somente o espaço restante da
+   viewport e recorta qualquer excedente dentro da moldura.
+========================================================= */
+.image-viewer{
+  box-sizing:border-box!important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:68px 18px 18px!important;
+  overflow:hidden!important;
+}
+
+.viewer-content{
+  box-sizing:border-box!important;
+  width:min(100%,1180px)!important;
+  height:calc(100dvh - 86px)!important;
+  max-height:calc(100dvh - 86px)!important;
+  min-height:0!important;
+  display:grid!important;
+  grid-template-rows:auto minmax(0,1fr)!important;
+  gap:10px!important;
+  align-items:stretch!important;
+  justify-items:center!important;
+  overflow:hidden!important;
+}
+
+.viewer-heading{
+  flex:0 0 auto;
+  min-height:0;
+}
+
+.viewer-frame{
+  box-sizing:border-box!important;
+  width:min(92vw,1100px)!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+  padding:12px!important;
+  border:4px solid #00b8ff!important;
+  border-radius:22px!important;
+  background:#02060b!important;
+  box-shadow:
+    0 0 18px rgba(0,184,255,1),
+    0 0 44px rgba(0,184,255,.72),
+    inset 0 0 28px rgba(0,184,255,.13)!important;
+}
+
+.viewer-frame img,
+#viewerImage{
+  box-sizing:border-box!important;
+  display:block!important;
+  flex:0 1 auto!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  overflow:hidden!important;
+}
+
+/* A moldura individual continua sendo a barreira física das
+   imagens dentro do tabuleiro. */
+.cell,
+.visual-box{
+  overflow:hidden!important;
+}
+.visual-box{
+  contain:layout paint!important;
+}
+.visual-box .cell-image{
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  transform:none!important;
+}
+
+@media (max-width:720px){
+  .image-viewer{
+    padding:62px 8px 8px!important;
+  }
+  .viewer-content{
+    height:calc(100dvh - 70px)!important;
+    max-height:calc(100dvh - 70px)!important;
+    gap:7px!important;
+  }
+  .viewer-frame{
+    width:96vw!important;
+    padding:7px!important;
+    border-width:3px!important;
+    border-radius:16px!important;
+  }
+}
+
+/* =========================================================
+   AJUSTE PREMIUM V10 — TELA INICIAL, COMO JOGAR E LAYOUT
+   - remove os cards de instrução da tela inicial
+   - aumenta a legibilidade da abertura e do modal COMO JOGAR
+   - centraliza o conjunto tabuleiro + controles
+   - posiciona a orientação à direita do tabuleiro
+========================================================= */
+
+/* Tela inicial mais limpa e com tipografia maior */
+.hero{
+  max-width:1320px;
+  grid-template-columns:minmax(0,1.18fr) minmax(350px,.82fr);
+  gap:24px;
+}
+.hero-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:560px;
+  padding:clamp(36px,4.5vw,64px);
+}
+.hero .eyebrow{
+  font-size:14px;
+  line-height:1.35;
+}
+.hero h2{
+  font-size:clamp(46px,5.3vw,72px);
+  line-height:1.04;
+  margin:20px 0 22px;
+}
+.hero-copy>p{
+  font-size:clamp(20px,2vw,24px);
+  line-height:1.58;
+  max-width:900px;
+}
+.hero-actions{
+  margin:34px 0 0;
+  gap:14px;
+}
+.hero-actions .primary-btn,
+.hero-actions .secondary-btn{
+  min-height:58px;
+  padding:16px 24px;
+  font-size:18px;
+}
+.level-showcase{
+  padding:24px;
+  gap:16px;
+}
+.level-card{
+  padding:24px;
+}
+.level-number{
+  font-size:13px;
+}
+.level-card h3{
+  font-size:31px;
+}
+.level-card p{
+  font-size:17px;
+  line-height:1.4;
+}
+.status,
+.password-link{
+  font-size:14px;
+}
+
+/* Destaques que foram movidos para COMO JOGAR */
+.help-modal{
+  width:min(1160px,96vw);
+}
+.help-modal>.eyebrow{
+  font-size:14px;
+}
+.help-modal>h2{
+  font-size:clamp(36px,4.6vw,54px);
+}
+.help-highlight-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin:20px 0 24px;
+}
+.help-highlight-grid article{
+  display:flex;
+  align-items:flex-start;
+  gap:15px;
+  padding:20px;
+  border-radius:20px;
+  background:#09131f;
+  border:1px solid #244160;
+}
+.help-highlight-grid article>span{
+  font-size:30px;
+  line-height:1;
+}
+.help-highlight-grid strong{
+  display:block;
+  color:#a6ebff;
+  font-size:20px;
+  line-height:1.25;
+  margin-bottom:7px;
+}
+.help-highlight-grid p{
+  margin:0;
+  color:#d1dced;
+  font-size:17px;
+  line-height:1.55;
+}
+.help-grid{
+  gap:14px;
+}
+.help-grid article{
+  padding:20px;
+}
+.help-grid article strong{
+  font-size:19px;
+  line-height:1.3;
+}
+.help-grid article p{
+  font-size:16.5px;
+  line-height:1.62;
+  color:#d0dbea;
+}
+.help-modal #closeHelpBottomBtn{
+  min-height:56px;
+  font-size:18px;
+}
+
+/* Conjunto do jogo centralizado, sem grandes espaços vazios */
+.game-shell{
+  max-width:1370px;
+}
+.play-layout{
+  grid-template-columns:minmax(0,980px) 350px;
+  gap:14px;
+  justify-content:center;
+  align-items:start;
+}
+.board-panel{
+  width:100%;
+  padding:16px;
+}
+.board-stage{
+  width:100%;
+  display:grid;
+  grid-template-columns:minmax(500px,700px) 220px;
+  gap:14px;
+  justify-content:center;
+  align-items:center;
+}
+.board-stage .board{
+  width:min(100%,700px);
+  margin:0 auto;
+}
+.control-panel{
+  gap:12px;
+}
+
+/* Caixa de orientação na lateral direita do tabuleiro */
+.board-side-rail{
+  align-self:stretch;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:12px;
+}
+.board-side-rail .feedback{
+  margin:0;
+  width:100%;
+}
+.board-side-rail .feedback.info{
+  padding:22px 18px;
+  border:3px solid #ffff7a;
+  border-radius:20px;
+  background:#f2ff00;
+  color:#050505;
+  box-shadow:
+    0 0 12px rgba(242,255,0,.92),
+    0 0 30px rgba(242,255,0,.58),
+    inset 0 0 15px rgba(255,255,255,.38);
+}
+.board-side-rail .feedback.info>span{
+  font-size:30px;
+}
+.board-side-rail .feedback.info strong{
+  color:#050505;
+  font-size:19px;
+  line-height:1.25;
+  font-weight:950;
+  margin-bottom:8px;
+}
+.board-side-rail .feedback.info p{
+  color:#050505;
+  font-size:16px;
+  line-height:1.48;
+  font-weight:900;
+}
+
+/* O aviso de limite usa a mesma coluna lateral e permanece centralizado */
+.board-side-rail .boundary-alert{
+  margin:0;
+  width:100%;
+}
+
+/* Responsividade: mantém o tabuleiro perto dos controles enquanto houver espaço */
+@media (max-width:1240px){
+  .play-layout{
+    grid-template-columns:minmax(0,1fr) 330px;
+    gap:12px;
+  }
+  .board-stage{
+    grid-template-columns:minmax(460px,1fr) 200px;
+    gap:12px;
+  }
+}
+
+@media (max-width:1050px){
+  .hero{
+    grid-template-columns:1fr;
+  }
+  .hero-copy{
+    min-height:0;
+  }
+  .play-layout{
+    grid-template-columns:1fr;
+  }
+  .control-panel{
+    position:static;
+    grid-template-columns:1fr 1fr;
+  }
+  .command-card{
+    grid-row:span 2;
+  }
+  .board-stage{
+    grid-template-columns:minmax(0,700px) 210px;
+  }
+}
+
+@media (max-width:820px){
+  .help-highlight-grid{
+    grid-template-columns:1fr;
+  }
+  .board-stage{
+    grid-template-columns:1fr;
+  }
+  .board-side-rail{
+    width:min(100%,700px);
+    justify-self:center;
+  }
+  .board-side-rail .feedback.info,
+  .board-side-rail .boundary-alert{
+    width:100%;
+  }
+}
+
+@media (max-width:720px){
+  .hero h2{
+    font-size:40px;
+  }
+  .hero-copy>p{
+    font-size:18px;
+  }
+  .help-highlight-grid strong{
+    font-size:18px;
+  }
+  .help-highlight-grid p,
+  .help-grid article p{
+    font-size:16px;
+  }
+  .control-panel{
+    grid-template-columns:1fr;
+  }
+  .command-card{
+    grid-row:auto;
+  }
+}
+
+/* =========================================================
+   V13 — COMO JOGAR com tipografia ampliada
+   ========================================================= */
+.help-modal{
+  width:min(1200px,97vw);
+}
+.help-modal>.eyebrow{
+  font-size:16px;
+  letter-spacing:.12em;
+}
+.help-modal>h2{
+  font-size:clamp(42px,5vw,60px);
+  line-height:1.05;
+  margin-bottom:16px;
+}
+.help-highlight-grid article{
+  padding:22px;
+}
+.help-highlight-grid article>span{
+  font-size:34px;
+}
+.help-highlight-grid strong{
+  font-size:clamp(21px,1.7vw,24px);
+  line-height:1.28;
+}
+.help-highlight-grid p{
+  font-size:clamp(18.5px,1.45vw,21px);
+  line-height:1.58;
+}
+.help-grid article{
+  padding:22px;
+}
+.help-grid article strong{
+  font-size:clamp(20.5px,1.6vw,23px);
+  line-height:1.32;
+}
+.help-grid article p{
+  font-size:clamp(18px,1.38vw,20px);
+  line-height:1.66;
+}
+.help-modal #closeHelpBottomBtn{
+  min-height:60px;
+  font-size:20px;
+}
+
+@media (max-width:720px){
+  .help-modal>.eyebrow{
+    font-size:15px;
+  }
+  .help-modal>h2{
+    font-size:40px;
+  }
+  .help-highlight-grid strong,
+  .help-grid article strong{
+    font-size:20px;
+  }
+  .help-highlight-grid p,
+  .help-grid article p{
+    font-size:18px;
+    line-height:1.6;
+  }
+}
+
+/* =========================================================
+   PREMIUM V15 — CONFIRMAÇÃO VISUAL DAS ENTREGAS
+   O selo permanece no destino depois de uma entrega correta.
+========================================================= */
+.delivery-badge{
+  position:absolute;
+  right:5px;
+  bottom:5px;
+  z-index:8;
+  min-width:34px;
+  height:28px;
+  padding:0 8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #5dff9a;
+  border-radius:999px;
+  background:#07140c;
+  color:#8dffb8;
+  font-size:13px;
+  line-height:1;
+  font-weight:950;
+  box-shadow:0 0 10px rgba(93,255,154,.75),0 0 20px rgba(93,255,154,.3);
+  pointer-events:none;
+}
+
+.feedback.success{
+  border-color:rgba(93,255,154,.62)!important;
+  box-shadow:0 0 0 1px rgba(93,255,154,.08),0 0 22px rgba(93,255,154,.09);
+}
+.feedback.success #feedbackTitle{
+  color:#8dffb8;
+}
+
+@media (max-width:720px){
+  .delivery-badge{
+    right:3px;
+    bottom:3px;
+    min-width:28px;
+    height:23px;
+    padding:0 6px;
+    font-size:11px;
+  }
+}

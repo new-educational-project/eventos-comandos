@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070b">
+  <title>Robô Prof. Léia — CONSCIÊNCIA+, ECOTECH+ e HUMANO+</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">🤖</div>
+      <div>
+        <h1>Robô Prof. Léia</h1>
+        <p>Da reciclagem, hábitos de saúde aos direitos humanos</p>
+      </div>
+    </div>
+    <button class="header-btn" id="helpBtn" type="button">❔ Instruções</button>
+  </header>
+
+  <main>
+    <section id="homeScreen" class="screen">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">JOGO PEDAGÓGICO • PENSAMENTO COMPUTACIONAL</span>
+          <h2>Planeje caminhos. Resolva desafios. Cuide do ambiente e das pessoas.</h2>
+          <p>
+            Programe a Prof. Léia por meio de sequências de comandos. O jogo combina
+            reciclagem, hábitos saudáveis, estratégia, classificação de materiais,
+            acolhimento, convivência e direitos humanos.
+          </p>
+
+          <div class="hero-actions">
+            <button class="primary-btn" id="startConsciousBtn" type="button">INICIAR CONSCIÊNCIA+</button>
+            <button class="secondary-btn" id="quickHelpBtn" type="button">COMO JOGAR</button>
+          </div>
+
+        </div>
+
+        <aside class="level-showcase" aria-label="Níveis do jogo">
+          <button class="level-card available" id="homeConsciousBtn" type="button">
+            <span class="level-number">NÍVEL 1</span>
+            <h3>CONSCIÊNCIA+</h3>
+            <p>Cuide de si. Cuide do ambiente.</p>
+            <span class="status" id="consciousStatus">Disponível</span>
+          </button>
+
+          <button class="level-card" id="homeEcoBtn" type="button">
+            <span class="level-number">NÍVEL 2</span>
+            <h3>ECOTECH+</h3>
+            <p>Planeje, programe e recicle.</p>
+            <span class="status" id="ecoStatus">Bloqueado</span>
+          </button>
+
+          <button class="level-card" id="homeHumanBtn" type="button">
+            <span class="level-number">NÍVEL 3</span>
+            <h3>HUMANO+</h3>
+            <p>Acolha, respeite e conviva.</p>
+            <span class="status" id="humanStatus">Bloqueado</span>
+          </button>
+
+          <button class="password-link" id="passwordBtn" type="button">⚡ Acesso ECOTECH+ / HUMANO+ por senha</button>
+        </aside>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="screen hidden">
+      <div class="game-shell">
+        <div class="stage-header">
+          <button class="ghost-btn home-neon-btn" id="backHomeBtn" type="button">← INÍCIO</button>
+          <div>
+            <span class="eyebrow" id="levelEyebrow">NÍVEL</span>
+            <h2 id="stageTitle">Fase</h2>
+            <div id="phaseDots" class="phase-dots" aria-label="Progresso das fases"></div>
+          </div>
+          <div class="stage-stats">
+            <span title="Execuções">▶ <b id="executionStat">0</b></span>
+            <span title="Erros">⚠ <b id="errorStat">0</b></span>
+            <span title="Entregues">✓ <b id="deliveredStat">0/0</b></span>
+          </div>
+        </div>
+
+        <div class="mission-premium">
+          <div class="mission-icon" aria-hidden="true">🎯</div>
+          <div>
+            <span>MISSÃO DA FASE</span>
+            <strong id="missionTitle">Planeje o percurso</strong>
+            <p id="missionText"></p>
+          </div>
+          <div class="tip-box">
+            <span>💡 DICA</span>
+            <p id="missionTip"></p>
+          </div>
+        </div>
+
+        <div id="humanBanner" class="human-banner hidden">
+          <strong>🤝 Salões do Acolhimento</strong>
+          <span>Espaços de identidade, proteção e convivência — não de separação.</span>
+        </div>
+
+        <div class="play-layout">
+          <div class="board-panel">
+            <div class="board-toolbar">
+              <div>
+                <span class="mini">TABULEIRO</span>
+                <strong id="boardSizeLabel">5 × 5</strong>
+              </div>
+              <p>👁 Clique em qualquer imagem para ampliar.</p>
+            </div>
+            <div class="board-stage">
+              <div id="board" class="board grid-5" aria-label="Tabuleiro do jogo"></div>
+              <div class="board-side-rail" aria-label="Orientações ao lado do tabuleiro">
+                <div id="feedback" class="feedback info" role="status">
+                  <span id="feedbackIcon">💬</span>
+                  <div>
+                    <strong id="feedbackTitle">Observe antes de agir</strong>
+                    <p id="feedbackText">Planeje sua sequência de comandos antes de executar.</p>
+                  </div>
+                </div>
+                <aside id="boundaryAlert" class="boundary-alert hidden" role="alert" aria-live="assertive">
+                  <span class="boundary-icon">⚠️</span>
+                  <strong>ATENÇÃO</strong>
+                  <p id="boundaryAlertText">A Prof. Léia tentou sair do tabuleiro. Revise a direção do comando e depure o algoritmo.</p>
+                </aside>
+              </div>
+            </div>
+          </div>
+
+          <aside class="control-panel">
+            <div class="command-card premium-card">
+              <span class="mini">COMANDOS</span>
+              <div class="arrow-pad">
+                <button class="arrow-btn up" data-command="MOVE_UP" type="button" aria-label="Cima"><span></span></button>
+                <button class="arrow-btn left" data-command="MOVE_LEFT" type="button" aria-label="Esquerda"><span></span></button>
+                <button id="actionCommandBtn" class="action-btn" data-command="ACTION" type="button" aria-label="Coletar ou entregar" title="Coletar / Entregar">✓</button>
+                <button class="arrow-btn right" data-command="MOVE_RIGHT" type="button" aria-label="Direita"><span></span></button>
+                <button class="arrow-btn down" data-command="MOVE_DOWN" type="button" aria-label="Baixo"><span></span></button>
+              </div>
+              <button class="execute-btn" id="executeBtn" type="button" aria-label="Executar comandos" title="Executar">▶</button>
+            </div>
+
+            <div class="queue-card premium-card">
+              <div class="queue-head">
+                <span class="mini">ALGORITMO</span>
+                <b id="queueCount">0</b>
+              </div>
+              <div id="commandQueue" class="command-queue"></div>
+              <div class="queue-tools">
+                <button id="undoBtn" type="button">↶ Desfazer</button>
+                <button id="clearBtn" type="button">⌫ Limpar</button>
+                <button id="resetBtn" type="button">↻ Reiniciar fase</button>
+              </div>
+            </div>
+
+            <div class="inventory premium-card">
+              <span class="mini">ACOMPANHAMENTO</span>
+              <div class="inventory-grid">
+                <div><span id="carryLabel">Carregando</span><strong id="carryStat">0</strong></div>
+                <div><span>Restantes</span><strong id="remainingStat">0</strong></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section id="quizModal" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-card quiz-modal">
+      <span class="eyebrow" id="quizTheme">QUIZ</span>
+      <div class="quiz-category" id="quizCategory">TEMA</div>
+      <h2 id="quizQuestion">Pergunta</h2>
+      <div id="quizOptions" class="quiz-options"></div>
+      <div id="quizFeedback" class="quiz-feedback neutral">Escolha uma alternativa.</div>
+      <div class="modal-actions">
+        <span id="quizProgress">1/3</span>
+        <button class="primary-btn" id="quizNextBtn" type="button" disabled>PRÓXIMA</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="resultModal" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-card result-card">
+      <div id="resultIcon" class="result-icon">⭐</div>
+      <span class="eyebrow">FASE CONCLUÍDA</span>
+      <h2 id="resultTitle">Jogada Excelente</h2>
+      <p id="resultText"></p>
+      <div id="resultExtra" class="result-extra"></div>
+      <button class="primary-btn" id="continueBtn" type="button">CONTINUAR</button>
+    </div>
+  </section>
+
+  <section id="humanIntroModal" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-card human-intro">
+      <span class="eyebrow">NÍVEL HUMANO+ • DIREITOS HUMANOS</span>
+      <h2>Salões do Acolhimento</h2>
+      <p>
+        Cada grupo será conduzido a um <strong>Salão do Acolhimento</strong>.
+        Esses espaços <strong>não existem para separar as pessoas</strong>, mas para
+        garantir que cada grupo possa preservar, expressar e compartilhar sua cultura,
+        sua história, seus costumes e suas formas de viver.
+      </p>
+      <p>
+        Ao mesmo tempo, todos continuam fazendo parte de uma mesma comunidade,
+        convivendo, aprendendo e construindo relações com os demais grupos.
+      </p>
+      <div class="human-principle">
+        <strong>Acolher as diferenças não significa criar distância.</strong>
+        <span>Significa garantir respeito, identidade, participação e convivência.</span>
+      </div>
+      <p class="human-closing">🌎 Diferentes culturas, os mesmos direitos, uma sociedade compartilhada.</p>
+      <button class="primary-btn" id="humanIntroStartBtn" type="button">COMEÇAR HUMANO+</button>
+    </div>
+  </section>
+
+  <section id="helpModal" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-card help-modal">
+      <button class="modal-close" id="closeHelpBtn" type="button" aria-label="Fechar">✕</button>
+      <span class="eyebrow">INSTRUÇÕES DO JOGO</span>
+      <h2>Como jogar</h2>
+
+      <div class="help-highlight-grid">
+        <article>
+          <span aria-hidden="true">🧠</span>
+          <div>
+            <strong>Monte algoritmos</strong>
+            <p>Cada toque em uma seta adiciona 1 comando. A Prof. Léia só se move quando você pressiona EXECUTAR.</p>
+          </div>
+        </article>
+        <article>
+          <span aria-hidden="true">🔎</span>
+          <div>
+            <strong>Amplie as imagens</strong>
+            <p>Clique em qualquer imagem do tabuleiro para abri-la centralizada em tela cheia.</p>
+          </div>
+        </article>
+        <article>
+          <span aria-hidden="true">🤝</span>
+          <div>
+            <strong>Salões do Acolhimento</strong>
+            <p>São espaços simbólicos de identidade, proteção, memória e convivência. Não representam separação: cada grupo pode preservar e compartilhar sua cultura, sua história e seus costumes sem se isolar do convívio com os demais.</p>
+          </div>
+        </article>
+        <article>
+          <span aria-hidden="true">🖼️</span>
+          <div>
+            <strong>Imagens em tela cheia</strong>
+            <p>Clique em qualquer imagem do tabuleiro para ampliá-la. Ela será centralizada em tela cheia, sobre fundo preto, com moldura azul neon e botão VOLTAR.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="help-grid">
+        <article>
+          <strong>1. Observe o tabuleiro</strong>
+          <p>Identifique a Prof. Léia, os itens, os obstáculos e os pontos de destino antes de programar.</p>
+        </article>
+        <article>
+          <strong>2. Monte o algoritmo</strong>
+          <p>Use ▲ ▼ ◀ ▶ para adicionar movimentos. O botão verde ✓ adiciona a ação COLETAR / ENTREGAR. Use-o uma vez sobre o objeto ou a pessoa para coletar/acompanhar e novamente sobre a lixeira, ponto de reciclagem ou Salão do Acolhimento correto para entregar.</p>
+        </article>
+        <article>
+          <strong>3. Execute</strong>
+          <p>Os comandos só serão realizados ao pressionar o botão azul ▶. Se houver erro, a execução é interrompida para depuração.</p>
+        </article>
+        <article>
+          <strong>4. Amplie qualquer imagem</strong>
+          <p>Clique em uma imagem do tabuleiro. Ela será aberta centralizada em tela cheia, sobre fundo preto e com borda azul neon.</p>
+        </article>
+        <article>
+          <strong>5. CONSCIÊNCIA+</strong>
+          <p>Utiliza sempre um tabuleiro <b>5×5</b>. Trabalha reciclagem, planejamento de percurso e um quiz com higiene pessoal, organização, sono, alimentação, lazer e convivência.</p>
+        </article>
+        <article>
+          <strong>6. ECOTECH+</strong>
+          <p><b>Novo desafio:</b> os itens e obstáculos mudam de posição a cada entrada ou reinício da fase. Observe o tabuleiro novamente antes de programar.<br><br>O ECOTECH+ utiliza sempre um tabuleiro <b>6×6</b>, com classificação de recicláveis e rejeitos, coleta seletiva e obstáculos.</p>
+        </article>
+        <article class="wide-help">
+          <strong>7. HUMANO+ e Salões do Acolhimento</strong>
+          <p>
+            O HUMANO+ utiliza sempre um tabuleiro <b>6×6</b>.<br><br>
+            As pessoas mudam de posição a cada entrada ou reinício da fase. A Prof. Léia deve conduzir <b>um grupo por vez</b>. Ela pode reunir todas as pessoas que pertencem ao mesmo Salão do Acolhimento e entregá-las juntas. Somente depois dessa entrega poderá iniciar a condução de outro grupo.<br><br>
+            Os Salões do Acolhimento são espaços simbólicos de identidade, proteção, memória e preservação cultural.
+            Eles <b>não existem para separar pessoas</b>. No jogo, conduzir um grupo ao salão correspondente significa
+            reconhecer sua história, seus costumes e suas formas de viver, mantendo o diálogo, a participação e a convivência
+            com todos os demais grupos em uma sociedade compartilhada.
+          </p>
+        </article>
+        <article class="wide-help">
+          <strong>8. Visualização das imagens</strong>
+          <p>
+            Todas as imagens numeradas de 01.jpg a 54.jpg podem ser clicadas no tabuleiro. Ao clicar,
+            a imagem abre centralizada em tela cheia, sobre fundo preto, com borda azul neon. Use VOLTAR
+            ou a tecla ESC para retornar ao jogo sem perder o progresso da fase.
+          </p>
+        </article>
+        <article class="wide-help">
+          <strong>9. Classificação das jogadas</strong>
+          <p><b>Jogada Básica:</b> houve erro e foi preciso depurar. <b>Jogada Excelente:</b> missão sem erros, mesmo em mais de uma execução. <b>Jogada dos Deuses:</b> missão completa em uma única execução e sem erros.</p>
+        </article>
+      </div>
+      <button class="primary-btn" id="closeHelpBottomBtn" type="button">ENTENDI</button>
+    </div>
+  </section>
+
+  <section id="passwordModal" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-card password-modal">
+      <button class="modal-close" id="closePasswordBtn" type="button" aria-label="Fechar">✕</button>
+      <span class="eyebrow">ACESSO ESPECIAL</span>
+      <h2 id="passwordTitle">ECOTECH+ e HUMANO+</h2>
+      <p>A mesma senha especial pode desbloquear o ECOTECH+ e o HUMANO+. Você também pode liberar os níveis concluindo a progressão normal do jogo.</p>
+      <input id="passwordInput" type="password" placeholder="Digite a senha" autocomplete="off">
+      <div id="passwordFeedback" class="password-feedback"></div>
+      <button class="primary-btn" id="passwordConfirmBtn" type="button">DESBLOQUEAR NÍVEIS</button>
+    </div>
+  </section>
+
+  <section id="imageViewer" class="image-viewer hidden" role="dialog" aria-modal="true">
+    <button class="viewer-close" id="viewerCloseBtn" type="button">← VOLTAR</button>
+    <div class="viewer-content">
+      <div class="viewer-heading">
+        <span id="viewerLabel" class="viewer-label">Imagem</span>
+        <span id="viewerFile" class="viewer-file">Arquivo</span>
+      </div>
+      <div class="viewer-frame">
+        <img id="viewerImage" src="01.jpg" alt="Imagem ampliada">
+      </div>
+    </div>
+  </section>
+
+  <section id="finalModal" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-card final-card">
+      <div class="final-icon">🏆</div>
+      <span class="eyebrow">JORNADA CONCLUÍDA</span>
+      <h2 id="finalTitle">Parabéns!</h2>
+      <p id="finalText"></p>
+      <button class="primary-btn" id="finalHomeBtn" type="button">VOLTAR AO INÍCIO</button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
